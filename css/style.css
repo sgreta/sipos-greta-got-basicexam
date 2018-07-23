@@ -8,7 +8,8 @@ body {
   position: relative;
   background-image: url('../assets/site/mapblue.jpg');
   background-attachment: fixed;
-  background-position: cover;
+  background-position: center center;
+  object-fit: cover;
   float: left;
 }
 .div-search {
