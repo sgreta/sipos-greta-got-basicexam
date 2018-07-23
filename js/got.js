@@ -12,8 +12,8 @@ function getData(url, callbackFunc) {
 function successAjax(xhttp) {
   // itt a json content, benne a data változóban
   var userDatas = JSON.parse(xhttp.responseText)[2].data;
-  console.log(sortCharactersByName(userDatas));
-  console.log(removeDeadCharacters(userDatas));
+  sortCharactersByName(userDatas);
+  removeDeadCharacters(userDatas);
   makeElementsForCharacters(userDatas);
 
   /*
@@ -50,7 +50,7 @@ function sortCharactersByName(names) {
 
 function removeDeadCharacters(live) {
   for (var i = 0; i < live.length; i++) {
-    if (parseInt(live[i].dead) == 1) {
+    if (live[i].dead == '1') {
       live.splice(i, 1);
       i--;
     }
@@ -64,6 +64,7 @@ function makeElementsForCharacters(character) {
     var smallDiv = document.createElement('div');
     var charImg = document.createElement('img');
     charImg.src = character[i].portrait;
+    charImg.setAttribute('class', 'round-img');
     var charName = document.createElement('p');
     charName.innerText = character[i].name;
     charName.setAttribute('onclick', `getOneCharacter(${i})`);
@@ -102,6 +103,10 @@ function startSearch(person) {
     if (inputValue == uData[i].name) {
       displayCharacter(uData[i]);
       break;
+    }
+    if (inputValue != uData[i].name) {
+      var story = document.querySelector('.bio');
+      story.innerText = 'Character not found.';
     }
   }
   return uData[i];

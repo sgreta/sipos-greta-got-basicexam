@@ -23,7 +23,12 @@ body {
     display: inline;
     float: left;
     padding: 10px;
+    width: 90px;
 }
 .movie-img {
-    margin-top: 20px;
+    margin: 20px 15px;    
+    width: 90%;
+}
+.round-img {
+    width: 80px;
 }
