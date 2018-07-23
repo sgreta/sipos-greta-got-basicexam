@@ -100,11 +100,17 @@ function startSearch(person) {
   var uData = JSON.parse(person.responseText)[2].data;
   var inputValue = document.querySelector('.input-field').value;
   for (var i = 0; i < uData.length; i++) {
-    if (inputValue == uData[i].name) {
+    if (inputValue == uData[i].name.toLowerCase()) {
       displayCharacter(uData[i]);
       break;
     }
     if (inputValue != uData[i].name) {
+      var movieImg = document.querySelector('.movie-img');
+      movieImg.src = '';
+      var movieName = document.querySelector('.got-name');
+      movieName.innerText = '';
+      var house = document.querySelector('.house-img');
+      house.src = '';
       var story = document.querySelector('.bio');
       story.innerText = 'Character not found.';
     }

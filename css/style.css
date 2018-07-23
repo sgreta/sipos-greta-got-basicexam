@@ -25,10 +25,20 @@ body {
     padding: 10px;
     width: 90px;
 }
+.div-list>div:hover {
+    opacity: 0.8;
+}
 .movie-img {
     margin: 20px 15px;    
     width: 90%;
 }
 .round-img {
     width: 80px;
+}
+.search-button {
+    border-radius: 6px;
+    margin-left: 20px;
+}
+.got-title {
+    margin: 20px;
 }
