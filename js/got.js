@@ -15,6 +15,7 @@ function successAjax(xhttp) {
   console.log(sortCharactersByName(userDatas));
   console.log(removeDeadCharacters(userDatas));
   makeElementsForCharacters(userDatas);
+
   /*
       Pár sorral lejebb majd ezt olvashatod:
       IDE ÍRD A FÜGGVÉNYEKET!!!!!! NE EBBE AZ EGY SORBA HANEM INNEN LEFELÉ!
@@ -78,8 +79,8 @@ function getOneCharacter(index) {
   });
 }
 
-function showOne(data, index) {
-  var chars = JSON.parse(data.responseText)[2].data;
+function showOne(names, index) {
+  var chars = JSON.parse(names.responseText)[2].data;
   displayCharacter(chars[index]);
 }
 
@@ -94,6 +95,18 @@ function displayCharacter(character) {
   story.innerText = character.bio;
 }
 
-function searchCharacter() {
+function startSearch(person) {
+  var uData = JSON.parse(person.responseText)[2].data;
+  var inputValue = document.querySelector('.input-field').value;
+  for (var i = 0; i < uData.length; i++) {
+    if (inputValue == uData[i].name) {
+      displayCharacter(uData[i]);
+      break;
+    }
+  }
+  return uData[i];
+}
 
+function searchCharacter() {
+  getData('/json/got-characters.json', startSearch);
 }
