@@ -4,7 +4,6 @@ body {
 .div-list {
   margin: 0;
   width: 75%;
-  height: 100vh;
   position: relative;
   background-image: url('../assets/site/mapblue.jpg');
   background-attachment: fixed;
@@ -19,4 +18,9 @@ body {
     background: #585858;
     position: relative;
     float: right;
+}
+.div-list div {
+    display: inline;
+    float: left;
+    padding: 10px;
 }

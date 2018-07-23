@@ -15,6 +15,7 @@ function successAjax(xhttp) {
   console.log(userDatas);
   sortCharactersByName(userDatas);
   removeDeadCharacters(userDatas);
+  displayCharacters(userDatas);
   /*
       Pár sorral lejebb majd ezt olvashatod:
       IDE ÍRD A FÜGGVÉNYEKET!!!!!! NE EBBE AZ EGY SORBA HANEM INNEN LEFELÉ!
@@ -55,4 +56,18 @@ function removeDeadCharacters(live) {
     }
   }
   return live;
+}
+
+function displayCharacters(character) {
+  var container = document.querySelector('.div-list');
+  for (var i = 0; i < character.length; i++) {
+    var smallDiv = document.createElement('div');
+    var charImg = document.createElement('img');
+    charImg.src = character[i].portrait;
+    var charName = document.createElement('p');
+    charName.innerText = character[i].name;
+    smallDiv.appendChild(charImg);
+    smallDiv.appendChild(charName);
+    container.appendChild(smallDiv);
+  }
 }
