@@ -12,10 +12,9 @@ function getData(url, callbackFunc) {
 function successAjax(xhttp) {
   // itt a json content, benne a data változóban
   var userDatas = JSON.parse(xhttp.responseText)[2].data;
-  console.log(userDatas);
-  sortCharactersByName(userDatas);
-  removeDeadCharacters(userDatas);
-  displayCharacters(userDatas);
+  console.log(sortCharactersByName(userDatas));
+  console.log(removeDeadCharacters(userDatas));
+  makeElementsForCharacters(userDatas);
   /*
       Pár sorral lejebb majd ezt olvashatod:
       IDE ÍRD A FÜGGVÉNYEKET!!!!!! NE EBBE AZ EGY SORBA HANEM INNEN LEFELÉ!
@@ -58,7 +57,7 @@ function removeDeadCharacters(live) {
   return live;
 }
 
-function displayCharacters(character) {
+function makeElementsForCharacters(character) {
   var container = document.querySelector('.div-list');
   for (var i = 0; i < character.length; i++) {
     var smallDiv = document.createElement('div');
@@ -66,8 +65,35 @@ function displayCharacters(character) {
     charImg.src = character[i].portrait;
     var charName = document.createElement('p');
     charName.innerText = character[i].name;
+    charName.setAttribute('onclick', `getOneCharacter(${i})`);
+    container.appendChild(smallDiv);
     smallDiv.appendChild(charImg);
     smallDiv.appendChild(charName);
-    container.appendChild(smallDiv);
   }
+}
+
+function getOneCharacter(index) {
+  getData('/json/got-characters.json', function (arr) {
+    showOne(arr, index);
+  });
+}
+
+function showOne(data, index) {
+  var chars = JSON.parse(data.responseText)[2].data;
+  displayCharacter(chars[index]);
+}
+
+function displayCharacter(character) {
+  var movieImg = document.querySelector('.movie-img');
+  movieImg.src = character.picture;
+  var movieName = document.querySelector('.got-name');
+  movieName.innerText = character.name;
+  var house = document.querySelector('.house-img');
+  house.src = `assets/houses/${character.house}.png`;
+  var story = document.querySelector('.bio');
+  story.innerText = character.bio;
+}
+
+function searchCharacter() {
+
 }
